@@ -6,6 +6,7 @@
   <title>Loan Chart | SecureBank</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,12 +17,13 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
-    table {
-      text-align: center;
-    }
     th {
       background: #0061a8;
       color: white;
+      text-align: center;
+    }
+    td {
+      text-align: center;
     }
     .back-btn {
       margin-bottom: 20px;
@@ -34,9 +36,12 @@
       <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
     </a>
 
-    <div class="card p-4">
+    <div class="card p-4 mb-4">
       <h3 class="mb-4 text-center text-primary"><i class="fas fa-chart-line me-2"></i>Loan Chart</h3>
-      
+      <canvas id="loanChart" height="100"></canvas>
+    </div>
+
+    <div class="card p-4">
       <div class="table-responsive">
         <table class="table table-bordered">
           <thead>
@@ -49,34 +54,39 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Personal</td>
-              <td>12</td><td>9</td><td>6</td><td>3</td>
-            </tr>
-            <tr>
-              <td>Personal Expense</td>
-              <td>9</td><td>6.75</td><td>4.5</td><td>2.25</td>
-            </tr>
-            <tr>
-              <td>Family</td>
-              <td>6</td><td>4.5</td><td>3</td><td>1.5</td>
-            </tr>
-            <tr>
-              <td>Family Relative</td>
-              <td>3</td><td>2.25</td><td>1.5</td><td>0.75</td>
-            </tr>
+            <tr><td>Personal</td><td>12</td><td>9</td><td>6</td><td>3</td></tr>
+            <tr><td>Personal Expense</td><td>9</td><td>6.75</td><td>4.5</td><td>2.25</td></tr>
+            <tr><td>Family</td><td>6</td><td>4.5</td><td>3</td><td>1.5</td></tr>
+            <tr><td>Family Relative</td><td>3</td><td>2.25</td><td>1.5</td><td>0.75</td></tr>
           </tbody>
         </table>
       </div>
 
       <h5 class="mt-4">Loan Details:</h5>
       <ul>
-        <li>Personal: 12% (Maximum 6 months)</li>
-        <li>Personal Expense: 9% (Maximum 9 months)</li>
-        <li>Family: 6% (Maximum 12 months)</li>
-        <li>Family Relative: 3% (Maximum 15 months)</li>
+        <li>Personal: 12% (Minimum 6 months)</li>
+        <li>Personal Expense: 9% (Minimum 9 months)</li>
+        <li>Family: 6% (Minimum 12 months)</li>
+        <li>Family Relative: 3% (Minimum 15 months)</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    const ctxLoan = document.getElementById('loanChart').getContext('2d');
+    new Chart(ctxLoan, {
+      type: 'bar',
+      data: {
+        labels: ['1–999', '1000–1999', '2000–2999', '3000+'],
+        datasets: [
+          { label: 'Personal', data: [12, 9, 6, 3], backgroundColor: '#007bff' },
+          { label: 'Personal Expense', data: [9, 6.75, 4.5, 2.25], backgroundColor: '#17a2b8' },
+          { label: 'Family', data: [6, 4.5, 3, 1.5], backgroundColor: '#28a745' },
+          { label: 'Family Relative', data: [3, 2.25, 1.5, 0.75], backgroundColor: '#ffc107' }
+        ]
+      },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+  </script>
 </body>
 </html>
