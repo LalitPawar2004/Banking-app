@@ -3,114 +3,336 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Receipt 2</title>
+  <title>Loan Receipt | SecureBank</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary-blue: #0061a8;
+      --secondary-blue: #003a63;
+      --accent-gold: #ffc107;
+      --light-bg: #f8f9fa;
+    }
+    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f8f9fa;
-      padding: 20px;
+      background: var(--light-bg);
+      color: #333;
+      padding: 15px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .receipt-container {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
     .receipt {
       background: white;
-      border: 2px solid #333;
-      border-radius: 10px;
-      padding: 25px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
-    .header {
+    
+    .receipt-header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 20px;
       text-align: center;
-      margin-bottom: 20px;
+      position: relative;
     }
-    .header h2 {
+    
+    .receipt-header h2 {
       margin: 0;
-      color: #0061a8;
+      font-size: 1.8rem;
     }
-    .info-table td {
-      padding: 6px 10px;
+    
+    .receipt-date {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
     }
-    .footer {
-      margin-top: 25px;
-      text-align: center;
-      font-size: 14px;
-      color: #555;
+    
+    .receipt-body {
+      padding: 25px;
     }
-    .signature {
-      margin-top: 40px;
+    
+    .info-group {
+      margin-bottom: 25px;
+    }
+    
+    .info-group-title {
+      font-size: 1.2rem;
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--light-bg);
       display: flex;
-      justify-content: space-between;
+      align-items: center;
     }
-    .signature div {
+    
+    .info-group-title i {
+      margin-right: 10px;
+    }
+    
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    
+    .info-row:nth-child(even) {
+      background-color: rgba(0, 97, 168, 0.05);
+    }
+    
+    .info-label {
+      font-weight: 600;
+      color: var(--secondary-blue);
+      min-width: 140px;
+      margin-right: 15px;
+    }
+    
+    .info-value {
+      flex: 1;
+      color: #333;
+    }
+    
+    .important-note {
+      background-color: #fff8e6;
+      border-left: 4px solid var(--accent-gold);
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 25px;
+      font-size: 0.95rem;
+    }
+    
+    .receipt-footer {
       text-align: center;
-      width: 45%;
+      padding: 20px;
+      background-color: var(--light-bg);
+      color: #666;
+      font-size: 0.9rem;
     }
-    hr {
-      border: 1px dashed #aaa;
+    
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+    
+    .btn-print, .btn-back {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-print i, .btn-back i {
+      margin-right: 8px;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+        display: block;
+      }
+      
+      .receipt-header {
+        padding: 15px;
+      }
+      
+      .receipt-header h2 {
+        font-size: 1.5rem;
+      }
+      
+      .receipt-body {
+        padding: 20px 15px;
+      }
+      
+      .info-row {
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
+      
+      .info-label {
+        min-width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .btn-print, .btn-back {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .receipt-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .info-group-title {
+        font-size: 1.1rem;
+      }
+      
+      .important-note {
+        padding: 12px;
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        display: block;
+      }
+      
+      .receipt {
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+      
+      .action-buttons {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="receipt">
-    <div class="header">
-      <h2>SecureBank Loan Receipt</h2>
-      <p><strong>Date:</strong> 13/10/2025</p>
-      <hr>
+  <div class="receipt-container">
+    <div class="receipt">
+      <div class="receipt-header">
+        <h2><i class="fas fa-receipt"></i> LRRN Bank Loan Receipt</h2>
+        <p class="receipt-date">Issued on: 25/09/2025</p>
+      </div>
+      
+      <div class="receipt-body">
+        <div class="info-group">
+          <div class="info-group-title">
+            <i class="fas fa-user"></i> Personal Information
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Name:</div>
+            <div class="info-value">Jayesh Ravi Patil</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Age:</div>
+            <div class="info-value">20 years 2 months</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Phone:</div>
+            <div class="info-value">9028530218</div>
+          </div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-group-title">
+            <i class="fas fa-money-bill-wave"></i> Loan Details
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Loan Amount:</div>
+            <div class="info-value">₹600</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Loan Type:</div>
+            <div class="info-value">Personal Expense</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Interest Rate:</div>
+            <div class="info-value">9%</div>
+          </div>
+        </div>
+        
+        <div class="info-group">
+          <div class="info-group-title">
+            <i class="fas fa-calendar-alt"></i> Payment Schedule
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">EMI Type:</div>
+            <div class="info-value">Weekly (Sunday)</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">EMI Amount:</div>
+            <div class="info-value">₹35</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Last EMI:</div>
+            <div class="info-value">₹59</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Tenure:</div>
+            <div class="info-value">9 months</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Loan Start:</div>
+            <div class="info-value">21/09/2025</div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-label">Loan End:</div>
+            <div class="info-value">18/01/2026</div>
+          </div>
+        </div>
+        
+        <div class="important-note">
+          <p><strong><i class="fas fa-exclamation-circle"></i> Important:</strong> A penalty of ₹35 will be applied if EMI payment fails. Please ensure timely payments to avoid additional charges.</p>
+        </div>
+      </div>
+      
+      <div class="receipt-footer">
+        <p>Thank you for choosing LRRNBank. Please pay your EMIs on time.</p>
+      </div>
     </div>
-
-    <table class="table table-borderless info-table">
-      <tr>
-        <td><strong>Name:</strong></td>
-        <td>Jayesh Ravi Patil</td>
-        <td><strong>Age:</strong></td>
-        <td>20y 2m</td>
-      </tr>
-      <tr>
-        <td><strong>Phone:</strong></td>
-        <td colspan="3">9028530218</td>
-      </tr>
-      <tr>
-        <td><strong>Loan Amount:</strong></td>
-        <td>₹ 1100</td>
-        <td><strong>Loan Type:</strong></td>
-        <td>Family</td>
-      </tr>
-      <tr>
-        <td><strong>EMI Type:</strong></td>
-        <td>Weekly (Sunday)</td>
-        <td><strong>Tenure:</strong></td>
-        <td>12 months</td>
-      </tr>
-      <tr>
-        <td><strong>Loan Start:</strong></td>
-        <td>21/09/2025</td>
-        <td><strong>Loan End:</strong></td>
-        <td>01/03/2026</td>
-      </tr>
-      <tr>
-        <td><strong>EMI Amount:</strong></td>
-        <td>₹ 48</td>
-        <td><strong>Last EMI:</strong></td>
-        <td>₹ 49</td>
-      </tr>
-      <tr>
-        <td><strong>Penalty (If EMI Fails):</strong></td>
-        <td colspan="3">₹ 48</td>
-      </tr>
-      <tr>
-        <td><strong>Interest Rate:</strong></td>
-        <td>4.5%</td>
-        <td><strong>Loan Issued:</strong></td>
-        <td>13/10/2025</td>
-      </tr>
-    </table>
-
     
-
-    <div class="footer">
-      <p>Thank you for choosing SecureBank. Please pay your EMIs on time.</p>
+    <div class="action-buttons">
+      <button class="btn btn-primary btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Print Receipt
+      </button>
+      <a href="dashboard.html" class="btn btn-secondary btn-back">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </a>
     </div>
   </div>
+
+  <script>
+    // Add slight animation to the receipt
+    document.addEventListener('DOMContentLoaded', function() {
+      const receipt = document.querySelector('.receipt');
+      receipt.style.transform = 'translateY(20px)';
+      receipt.style.opacity = '0';
+      
+      setTimeout(() => {
+        receipt.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+        receipt.style.transform = 'translateY(0)';
+        receipt.style.opacity = '1';
+      }, 100);
+    });
+  </script>
 </body>
-          </html>
+</html>
