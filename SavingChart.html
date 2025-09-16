@@ -13,7 +13,7 @@
       --accent-gold: #ffc107;
       --light-bg: #f8f9fa;
     }
-    
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, var(--light-bg) 0%, #e0e6ed 100%);
@@ -21,11 +21,11 @@
       min-height: 100vh;
       padding: 20px 0;
     }
-    
+
     .container {
       max-width: 1000px;
     }
-    
+
     .back-btn {
       margin-bottom: 20px;
       border-radius: 8px;
@@ -33,20 +33,20 @@
       font-weight: 500;
       transition: all 0.3s ease;
     }
-    
+
     .back-btn:hover {
       transform: translateX(-3px);
       background-color: #5a6268;
       border-color: #5a6268;
     }
-    
+
     .card {
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       border: none;
       overflow: hidden;
     }
-    
+
     .card-header {
       background: var(--primary-blue);
       color: white;
@@ -54,18 +54,19 @@
       text-align: center;
       border-bottom: 0;
     }
-    
+
     .card-body {
       padding: 25px;
     }
-    
+
     table {
       text-align: center;
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
+      min-width: 600px; /* Ensures scroll on small devices */
     }
-    
+
     th {
       background: var(--primary-blue);
       color: white;
@@ -74,24 +75,24 @@
       position: sticky;
       top: 0;
     }
-    
+
     td {
       padding: 12px 8px;
       border-bottom: 1px solid #dee2e6;
     }
-    
+
     tr:last-child td {
       border-bottom: none;
     }
-    
+
     tr:nth-child(even) {
       background-color: rgba(0, 97, 168, 0.05);
     }
-    
+
     tr:hover {
       background-color: rgba(0, 97, 168, 0.1);
     }
-    
+
     .loan-details {
       background-color: #f8f9fa;
       border-left: 4px solid var(--accent-gold);
@@ -99,125 +100,143 @@
       border-radius: 8px;
       margin-top: 30px;
     }
-    
+
     .loan-details h5 {
       color: var(--primary-blue);
       margin-bottom: 15px;
       display: flex;
       align-items: center;
     }
-    
+
     .loan-details h5 i {
       margin-right: 10px;
     }
-    
+
     .loan-details ul {
       margin-bottom: 0;
       padding-left: 20px;
     }
-    
+
     .loan-details li {
       margin-bottom: 8px;
       line-height: 1.5;
     }
-    
+
     .loan-details li:last-child {
       margin-bottom: 0;
     }
-    
+
     /* Mobile-specific styles */
     @media (max-width: 768px) {
       body {
         padding: 15px 0;
       }
-      
+
       .card-body {
         padding: 20px 15px;
       }
-      
+
       .table-responsive {
         border-radius: 8px;
-        overflow: hidden;
+        overflow: auto;
         border: 1px solid #dee2e6;
+        position: relative;
       }
-      
-      table {
-        min-width: 600px; /* Allows horizontal scrolling on mobile */
+
+      /* Scroll hint below the table */
+      .table-responsive::after {
+        content: "← Swipe to scroll →";
+        display: block;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 8px;
       }
-      
+
       th, td {
         padding: 10px 6px;
         font-size: 0.9rem;
       }
-      
+
       .loan-details {
         padding: 15px;
       }
-      
+
       .loan-details h5 {
         font-size: 1.1rem;
       }
     }
-    
+
     @media (max-width: 576px) {
       .card-header h3 {
         font-size: 1.4rem;
       }
-      
+
       .back-btn {
         width: 100%;
         text-align: center;
         margin-bottom: 15px;
       }
-      
+
       .loan-details ul {
         padding-left: 15px;
       }
     }
-    
+
+    @media (max-width: 400px) {
+      .loan-details {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .loan-details h5 {
+        font-size: 1rem;
+      }
+    }
+
     /* Print styles */
     @media print {
       body {
         background: white;
         padding: 0;
       }
-      
+
       .back-btn {
         display: none;
       }
-      
+
       .card {
         box-shadow: none;
         border: 1px solid #ddd;
       }
     }
-    
+
     /* High contrast mode support */
     @media (prefers-contrast: high) {
       th {
         background: black;
       }
-      
+
       .card {
         border: 2px solid black;
       }
-      
+
       tr:nth-child(even) {
         background-color: #f0f0f0;
       }
     }
-    
+
     /* Reduced motion support */
     @media (prefers-reduced-motion: reduce) {
       .back-btn {
         transition: none;
       }
-      
+
       .back-btn:hover {
         transform: none;
       }
     }
-    
+
     /* Focus styles for accessibility */
     .back-btn:focus,
     table a:focus {
@@ -234,11 +253,11 @@
 
     <div class="card">
       <div class="card-header">
-        <h3 class="mb-0"><i class="fas fa-chart-line me-2"></i>Loan Interest Rates</h3>
+        <h3 class="mb-0"><i class="fas fa-chart-line me-2"></i>Saving Interest Rates</h3>
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table class="table table-bordered table-sm">
             <thead>
               <tr>
                 <th>Saving Type</th>
@@ -282,12 +301,12 @@
         </div>
 
         <div class="loan-details">
-          <h5><i class="fas fa-info-circle"></i> Loan Details</h5>
+          <h5><i class="fas fa-info-circle"></i> Saving Details</h5>
           <ul>
             <li><strong>Daily Saving:</strong> Only for 6 months tenure</li>
-            <li><strong>Two day Saving:</strong> Only for 6 months tenure</li>
-            <li><strong>Weekly Saving:</strong> Only for 6 months tenureli>
-            <li><strong>Monthly Saving:</strong> Only for 6 months tenure</li>
+            <li><strong>Two day Saving:</strong> Only for 9 months tenure</li>
+            <li><strong>Weekly Saving:</strong> Only for 12 months tenure</li>
+            <li><strong>Monthly Saving:</strong> Only for 15 months tenure</li>
           </ul>
         </div>
       </div>
