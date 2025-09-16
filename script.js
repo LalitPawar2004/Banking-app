@@ -1,9 +1,9 @@
 // Sample data
     const transactions = [
-        { amount: 200, type: 'debit', date: '14 September', description: 'ATM Withdrawal' },
-        { amount: 1, type: 'credit', date: '14 September', description: 'Kamgar' },
-        { amount: 10, type: 'debit', date: '13 September', description: 'ADDA' },
-        { amount: 52, type: 'credit', date: '13 September', description: 'Fund Transfer' },
+      { amount: 200, type: 'debit', date: '14 September', description: 'ATM Withdrawal' },
+      { amount: 1, type: 'credit', date: '14 September', description: 'Kamgar' },
+      { amount: 10, type: 'debit', date: '13 September', description: 'ADDA' },
+      { amount: 52, type: 'credit', date: '13 September', description: 'Fund Transfer' },
       { amount: 40, type: 'credit', date: '12 September', description: 'Fund Transfer' },
       { amount: 20, type: 'debit', date: '12 September', description: 'ATM Withdrawal' },
       { amount: 60, type: 'debit', date: '12 September', description: 'Saving' },
@@ -44,11 +44,11 @@
           <i class="fas ${txn.type === 'credit' ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
         </div>
         <div class="transaction-details">
-          <div class="fw-bold">${txn.description}</div>
+          <div class="transaction-description">${txn.description}</div>
           <div class="transaction-date">${txn.date}</div>
         </div>
         <div class="transaction-amount">
-          ${txn.type === 'credit' ? '+' : '-'}₹${txn.amount}
+          ${txn.type === 'credit' ? '+' : '-'}₹${txn.amount.toLocaleString('en-IN')}
         </div>
       `;
       
