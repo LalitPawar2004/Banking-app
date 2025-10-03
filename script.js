@@ -1,5 +1,6 @@
 // Sample data
     const transactions = [
+        { amount: 1, type: 'debit', date: '3 october', description: 'ATM Withdrawal' },
         { amount: 200, type: 'credit', date: '3 Octomber', description: 'Fund Transfer' },
         { amount: 60, type: 'debit', date: '3 Octomber', description: 'Saving' },
         { amount: 50, type: 'credit', date: '30 September', description: 'Fund Transfer' },
