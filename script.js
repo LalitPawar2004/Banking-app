@@ -4,7 +4,7 @@ const transactions = [
 { amount: 18, type: 'debit', date: '2 November', description: 'Loan' },
 { amount: 35, type: 'debit', date: '2 November', description: 'Loan' },
 { amount: 48, type: 'debit', date: '2 November', description: 'Loan' },
-{ amount: 366, type: 'debit', date: '1 November', description: 'Loan' },
+{ amount: 360, type: 'debit', date: '1 November', description: 'Loan' },
   { amount: 450, type: 'credit', date: '31 October', description: 'Fund Transfer' },
   { amount: 18, type: 'debit', date: '26 October', description: 'Loan' },
 { amount: 35, type: 'debit', date: '26 October', description: 'Loan' },
