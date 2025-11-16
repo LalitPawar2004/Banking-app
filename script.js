@@ -1,7 +1,10 @@
 // Sample data
 const transactions = [
-   { amount: 60, type: 'debit', date: '11 November', description: 'Saving' },
-   { amount: 11, type: 'credit', date: '9 November', description: 'Saving' },
+      { amount: 18, type: 'debit', date: '16 November', description: 'Loan' },
+{ amount: 35, type: 'debit', date: '16 November', description: 'Loan' },
+{ amount: 48, type: 'debit', date: '16 November', description: 'Loan' },
+   { amount: 50, type: 'debit', date: '11 November', description: 'Saving' },
+   { amount: 11, type: 'credit', date: '9 November', description: '10+1 offer' },
    { amount: 18, type: 'debit', date: '9 November', description: 'Loan' },
 { amount: 35, type: 'debit', date: '9 November', description: 'Loan' },
 { amount: 48, type: 'debit', date: '9 November', description: 'Loan' },
