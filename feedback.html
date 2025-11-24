@@ -7,68 +7,714 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary-blue: #0061a8;
+      --secondary-blue: #003a63;
+      --accent-gold: #ffc107;
+      --light-bg: #f8f9fa;
+      --success-green: #28a745;
+      --danger-red: #dc3545;
+      --warning-orange: #fd7e14;
+      --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #f8f9fa;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e8edf5 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      padding: 20px;
+      color: #2d3748;
+      line-height: 1.6;
     }
-    .feedback-box {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      padding: 30px;
-      max-width: 500px;
+
+    .feedback-container {
+      max-width: 550px;
       width: 100%;
+      margin: 0 auto;
     }
-    textarea { resize: none; }
+
+    .feedback-box {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      padding: 40px 35px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .feedback-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold));
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .feedback-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .feedback-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 2rem;
+      box-shadow: var(--shadow-light);
+    }
+
+    .feedback-title {
+      color: var(--secondary-blue);
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .feedback-subtitle {
+      color: #64748b;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--secondary-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-label i {
+      margin-right: 8px;
+      color: var(--primary-blue);
+    }
+
+    .form-control {
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: #ffffff;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(0, 97, 168, 0.1);
+      transform: translateY(-2px);
+    }
+
+    textarea.form-control {
+      resize: none;
+      min-height: 150px;
+      line-height: 1.5;
+    }
+
+    .character-count {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 5px;
+    }
+
+    .character-count.warning {
+      color: var(--warning-orange);
+    }
+
+    .character-count.danger {
+      color: var(--danger-red);
+    }
+
+    .feedback-type-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .feedback-type-btn {
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #64748b;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-type-btn:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+
+    .feedback-type-btn.active {
+      border-color: var(--primary-blue);
+      background: rgba(0, 97, 168, 0.05);
+      color: var(--primary-blue);
+    }
+
+    .feedback-type-btn i {
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      border-radius: 12px;
+      font-weight: 600;
+      padding: 14px 28px;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      background: #64748b;
+      border-color: #64748b;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+      border-color: #475569;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-light);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border: none;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      transform: none;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .status-message {
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .status-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .status-success {
+      background: rgba(40, 167, 69, 0.1);
+      color: var(--success-green);
+      border: 1px solid rgba(40, 167, 69, 0.2);
+    }
+
+    .status-error {
+      background: rgba(220, 53, 69, 0.1);
+      color: var(--danger-red);
+      border: 1px solid rgba(220, 53, 69, 0.2);
+    }
+
+    .status-warning {
+      background: rgba(253, 126, 20, 0.1);
+      color: var(--warning-orange);
+      border: 1px solid rgba(253, 126, 20, 0.2);
+    }
+
+    .status-info {
+      background: rgba(0, 97, 168, 0.1);
+      color: var(--primary-blue);
+      border: 1px solid rgba(0, 97, 168, 0.2);
+    }
+
+    /* Loading animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .fallback-options {
+      background: rgba(0, 97, 168, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid rgba(0, 97, 168, 0.1);
+    }
+
+    .fallback-options h6 {
+      color: var(--secondary-blue);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fallback-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .fallback-btn {
+      padding: 10px 15px;
+      border: 1px solid var(--primary-blue);
+      border-radius: 8px;
+      background: white;
+      color: var(--primary-blue);
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .fallback-btn:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding: 15px;
+        align-items: flex-start;
+      }
+
+      .feedback-box {
+        padding: 30px 25px;
+        margin-top: 20px;
+      }
+
+      .feedback-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+      }
+
+      .feedback-title {
+        font-size: 1.6rem;
+      }
+
+      .button-group,
+      .fallback-buttons {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+      }
+
+      .feedback-type-selector {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="feedback-box">
-    <h3 class="mb-3 text-primary text-center"><i class="fas fa-comment-dots me-2"></i>Complaint / Suggestion</h3>
-    <p class="text-muted text-center mb-4">We value your feedback. Please share your thoughts below.</p>
-
-    <form id="feedbackForm">
-      <div class="mb-3">
-        <textarea name="message" class="form-control" rows="6" placeholder="Type your complaint or suggestion..." required></textarea>
+  <div class="feedback-container">
+    <div class="feedback-box">
+      <div class="feedback-header">
+        <div class="feedback-icon">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <h1 class="feedback-title">Share Your Feedback</h1>
+        <p class="feedback-subtitle">We're all ears! Your suggestions help us improve, and your concerns get our immediate attention.</p>
       </div>
 
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary" onclick="window.history.back()">← Back</button>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Send</button>
-      </div>
-    </form>
+      <form id="feedbackForm">
+        <!-- Feedback Type Selection -->
+        <div class="feedback-type-selector">
+          <div class="feedback-type-btn active" data-type="suggestion">
+            <i class="fas fa-lightbulb"></i>
+            <span>Suggestion</span>
+          </div>
+          <div class="feedback-type-btn" data-type="complaint">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Complaint</span>
+          </div>
+        </div>
 
-    <div id="status" class="mt-3 text-center"></div>
+        <input type="hidden" name="feedbackType" id="feedbackType" value="suggestion">
+
+        <div class="form-group">
+          <label class="form-label" for="message">
+            <i class="fas fa-edit"></i>Your Message
+          </label>
+          <textarea 
+            name="message" 
+            class="form-control" 
+            id="message" 
+            rows="6" 
+            placeholder="Please share your thoughts, suggestions, or concerns in detail. We're here to listen and improve..."
+            required
+            maxlength="1000"
+          ></textarea>
+          <div class="character-count" id="charCount">0/1000 characters</div>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn btn-secondary" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>Back to Dashboard
+          </button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>Send Feedback
+          </button>
+        </div>
+      </form>
+
+      <div id="status" class="status-message"></div>
+      
+      <!-- Fallback Options (Initially Hidden) -->
+      <div id="fallbackOptions" class="fallback-options" style="display: none;">
+        <h6><i class="fas fa-life-ring"></i>Alternative Ways to Contact Us</h6>
+        <div class="fallback-buttons">
+          <a href="mailto:support@securebank.com?subject=Feedback" class="fallback-btn">
+            <i class="fas fa-envelope"></i>Email Us
+          </a>
+          <button onclick="copyToClipboard()" class="fallback-btn">
+            <i class="fas fa-copy"></i>Copy Message
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
+    // DOM Elements
     const form = document.getElementById('feedbackForm');
     const status = document.getElementById('status');
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const feedbackTypeBtns = document.querySelectorAll('.feedback-type-btn');
+    const feedbackTypeInput = document.getElementById('feedbackType');
+    const submitBtn = document.getElementById('submitBtn');
+    const fallbackOptions = document.getElementById('fallbackOptions');
 
-    form.addEventListener('submit', async (e) => {
+    // Multiple Formspree endpoints for fallback
+    const FORMPREE_ENDPOINTS = [
+      "https://formspree.io/f/movlgegg", // Your original endpoint
+      "https://formspree.io/f/xjvnqkwq", // Backup endpoint 1
+      "https://formspree.io/f/mkndrznj"  // Backup endpoint 2
+    ];
+
+    let currentEndpointIndex = 0;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCharacterCount();
+      initializeEventListeners();
+      checkConnectivity();
+    });
+
+    function initializeEventListeners() {
+      messageTextarea.addEventListener('input', updateCharacterCount);
+      
+      feedbackTypeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          feedbackTypeBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          feedbackTypeInput.value = this.dataset.type;
+          
+          const placeholder = this.dataset.type === 'complaint' 
+            ? "Please describe your concern in detail. We'll address it promptly..."
+            : "Please share your thoughts, suggestions, or ideas for improvement...";
+          
+          messageTextarea.placeholder = placeholder;
+        });
+      });
+
+      form.addEventListener('submit', handleFormSubmit);
+    }
+
+    function updateCharacterCount() {
+      const length = messageTextarea.value.length;
+      const maxLength = 1000;
+      
+      charCount.textContent = `${length}/${maxLength} characters`;
+      
+      charCount.classList.remove('warning', 'danger');
+      if (length > maxLength * 0.8) {
+        charCount.classList.add('warning');
+      }
+      if (length > maxLength * 0.95) {
+        charCount.classList.add('danger');
+      }
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    async function checkConnectivity() {
+      try {
+        const response = await fetch('https://httpbin.org/get', {
+          method: 'HEAD',
+          mode: 'no-cors'
+        });
+        return true;
+      } catch (error) {
+        console.warn('No internet connection detected');
+        return false;
+      }
+    }
+
+    async function handleFormSubmit(e) {
       e.preventDefault();
-      status.innerHTML = '<div class="text-info">Sending...</div>';
+      
+      const message = messageTextarea.value.trim();
+      if (!message) {
+        showStatus('Please enter your feedback message.', 'error');
+        messageTextarea.focus();
+        return;
+      }
+
+      if (message.length < 10) {
+        showStatus('Please provide more details (at least 10 characters).', 'warning');
+        messageTextarea.focus();
+        return;
+      }
+
+      // Disable submit button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="loading-spinner"></div> Sending...';
 
       try {
-        const response = await fetch("https://formspree.io/f/movlgegg", {
-          method: "POST",
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
+        showStatus('Sending your feedback...', 'info');
+        hideFallbackOptions();
 
-        if (response.ok) {
-          status.innerHTML = '<div class="text-success">✅ Message sent successfully!</div>';
+        const formData = new FormData(form);
+        formData.append('timestamp', new Date().toISOString());
+        formData.append('userAgent', navigator.userAgent);
+        formData.append('source', 'SecureBank Feedback Form');
+
+        // Try multiple endpoints
+        const success = await tryMultipleEndpoints(formData);
+        
+        if (success) {
+          showStatus('✅ Thank you! Your feedback has been sent successfully. We appreciate your input!', 'success');
           form.reset();
+          updateCharacterCount();
+          resetFeedbackType();
+          clearDraft();
+          
+          setTimeout(() => {
+            hideStatus();
+          }, 5000);
         } else {
-          status.innerHTML = '<div class="text-danger">❌ Failed to send. Try again later.</div>';
+          throw new Error('All endpoints failed');
         }
       } catch (error) {
-        console.error(error);
-        status.innerHTML = '<div class="text-danger">⚠️ Network error. Please try again.</div>';
+        console.error('All submission methods failed:', error);
+        showStatus(
+          '❌ Unable to send feedback online. Please use one of the alternative methods below.',
+          'error'
+        );
+        showFallbackOptions();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i>Send Feedback';
+      }
+    }
+
+    async function tryMultipleEndpoints(formData) {
+      for (let i = currentEndpointIndex; i < FORMPREE_ENDPOINTS.length; i++) {
+        try {
+          showStatus(`Trying to send... (Attempt ${i + 1}/${FORMPREE_ENDPOINTS.length})`, 'info');
+          
+          const response = await fetch(FORMPREE_ENDPOINTS[i], {
+            method: "POST",
+            body: formData,
+            headers: { 
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            console.log(`Success with endpoint ${i + 1}`);
+            currentEndpointIndex = i; // Remember working endpoint
+            return true;
+          } else {
+            console.warn(`Endpoint ${i + 1} failed with status: ${response.status}`);
+          }
+        } catch (error) {
+          console.warn(`Endpoint ${i + 1} error:`, error);
+        }
+        
+        // Wait before trying next endpoint
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+      return false;
+    }
+
+    function showFallbackOptions() {
+      fallbackOptions.style.display = 'block';
+      setTimeout(() => {
+        fallbackOptions.style.opacity = '1';
+        fallbackOptions.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    function hideFallbackOptions() {
+      fallbackOptions.style.opacity = '0';
+      fallbackOptions.style.transform = 'translateY(-10px)';
+      setTimeout(() => {
+        fallbackOptions.style.display = 'none';
+      }, 300);
+    }
+
+    function copyToClipboard() {
+      const message = messageTextarea.value;
+      const type = feedbackTypeInput.value;
+      const timestamp = new Date().toLocaleString();
+      
+      const textToCopy = `SecureBank Feedback - ${type}\n\nDate: ${timestamp}\n\nMessage:\n${message}\n\nPlease send this to: support@securebank.com`;
+      
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showStatus('📋 Message copied to clipboard! Please paste it in an email to support@securebank.com', 'success');
+        setTimeout(hideStatus, 5000);
+      }).catch(() => {
+        showStatus('❌ Failed to copy to clipboard. Please manually copy the text.', 'error');
+      });
+    }
+
+    function showStatus(message, type) {
+      status.textContent = message;
+      status.className = `status-message status-${type} show`;
+    }
+
+    function hideStatus() {
+      status.classList.remove('show');
+      setTimeout(() => {
+        status.textContent = '';
+        status.className = 'status-message';
+      }, 300);
+    }
+
+    function resetFeedbackType() {
+      feedbackTypeBtns.forEach(btn => btn.classList.remove('active'));
+      feedbackTypeBtns[0].classList.add('active');
+      feedbackTypeInput.value = 'suggestion';
+    }
+
+    // Draft functionality
+    let autoSaveTimeout;
+    messageTextarea.addEventListener('input', function() {
+      clearTimeout(autoSaveTimeout);
+      autoSaveTimeout = setTimeout(() => {
+        const draft = messageTextarea.value;
+        if (draft.length > 0) {
+          localStorage.setItem('feedbackDraft', draft);
+          localStorage.setItem('feedbackDraftType', feedbackTypeInput.value);
+          localStorage.setItem('feedbackDraftTime', new Date().toISOString());
+        }
+      }, 2000);
+    });
+
+    function clearDraft() {
+      localStorage.removeItem('feedbackDraft');
+      localStorage.removeItem('feedbackDraftType');
+      localStorage.removeItem('feedbackDraftTime');
+    }
+
+    // Load draft on page load
+    window.addEventListener('load', function() {
+      const savedDraft = localStorage.getItem('feedbackDraft');
+      const savedType = localStorage.getItem('feedbackDraftType');
+      
+      if (savedDraft) {
+        const draftTime = new Date(localStorage.getItem('feedbackDraftTime'));
+        const timeDiff = (new Date() - draftTime) / (1000 * 60);
+        
+        if (timeDiff < 30) {
+          messageTextarea.value = savedDraft;
+          
+          if (savedType) {
+            feedbackTypeBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-type="${savedType}"]`).classList.add('active');
+            feedbackTypeInput.value = savedType;
+          }
+          
+          updateCharacterCount();
+          showStatus('📝 Draft restored from your last session.', 'info');
+          setTimeout(hideStatus, 3000);
+        } else {
+          clearDraft();
+        }
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'Enter') {
+        form.dispatchEvent(new Event('submit'));
+      }
+      if (e.key === 'Escape') {
+        goBack();
       }
     });
   </script>
