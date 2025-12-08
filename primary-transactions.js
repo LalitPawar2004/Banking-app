@@ -1,23 +1,16 @@
 // primary-transactions.js - Primary account transaction data
 
 const primaryTransactions = [
-<<<<<<< HEAD
     { amount: 50, type: 'debit', date: '9 December', description: 'Saving'},
     { amount: 18, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 35, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 48, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 200, type: 'credit', date: '6 December', description: 'Fund Transfer' },
-    { amount: 50, type: 'debit', date: '25 November', description: 'Saving'},
+    { amount: 50, type: 'debit', date: '2 December', description: 'Saving'},
     { amount: 18, type: 'debit', date: '30 November', description: 'Loan' },
     { amount: 35, type: 'debit', date: '30 November', description: 'Loan' },
     { amount: 48, type: 'debit', date: '30 November', description: 'Loan' },
-=======
     { amount: 400, type: 'credit', date: '30 November', description: 'Fund transfer'},
-    { amount: 18, type: 'debit', date: '30 November', description: 'Loan' },
-    { amount: 35, type: 'debit', date: '30 November', description: 'Loan' },
-    { amount: 48, type: 'debit', date: '30 November', description: 'Loan' },
-    { amount: 100, type: 'debit', date: '25 November', description: 'FD'},
->>>>>>> 2e539a1b225b120fb2eb8c232876481e50ddd41f
     { amount: 5, type: 'debit', date: '25 November', description: 'secondary account'},
     { amount: 50, type: 'debit', date: '25 November', description: 'Saving'},
     { amount: 100, type: 'credit', date: '25 November', description: 'Garwa Biryani'},
