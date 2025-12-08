@@ -2,11 +2,12 @@
 
 const primaryTransactions = [
     { amount: 50, type: 'debit', date: '9 December', description: 'Saving'},
-    { amount: 18, type: 'debit', date: '7 December', description: 'Loan' },
+    { amount: 26, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 35, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 48, type: 'debit', date: '7 December', description: 'Loan' },
     { amount: 200, type: 'credit', date: '6 December', description: 'Fund Transfer' },
     { amount: 50, type: 'debit', date: '2 December', description: 'Saving'},
+    { amount: 360, type: 'debit', date: '1 December', description: 'Loan'},
     { amount: 18, type: 'debit', date: '30 November', description: 'Loan' },
     { amount: 35, type: 'debit', date: '30 November', description: 'Loan' },
     { amount: 48, type: 'debit', date: '30 November', description: 'Loan' },
