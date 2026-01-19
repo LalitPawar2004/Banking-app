@@ -126,12 +126,14 @@ function initializeReceiptsSection() {
     const allActions = [
         { title: 'Loan Chart', link: 'LoanChart.html', icon: 'fa-chart-line' },
         { title: 'Saving Chart', link: 'SavingChart.html', icon: 'fa-piggy-bank' },
-        { title: 'Loan Receipt 1', link: 'LoanReceipt1.html', icon: 'fa-receipt' },
-        { title: 'Loan Receipt 2', link: 'LoanReceipt2.html', icon: 'fa-receipt' },
-        { title: 'Loan Receipt 3', link: 'LoanReceipt3.html', icon: 'fa-receipt' },
-        { title: 'Loan Receipt 4', link: 'LoanReceipt4.html', icon: 'fa-receipt' },
-        { title: 'Saving Receipt', link: 'SavingReceipt.html', icon: 'fa-piggy-bank' },
-        { title: 'Saving Receipt 2', link: 'SavingReceipt1.html', icon: 'fa-piggy-bank' },
+        { title: 'Loan Receipt 200 Rs', link: 'LoanReceipt1.html', icon: 'fa-receipt' },
+        { title: 'Loan Receipt 600 Rs', link: 'LoanReceipt2.html', icon: 'fa-receipt' },
+        { title: 'Loan Receipt 1100 Rs', link: 'LoanReceipt3.html', icon: 'fa-receipt' },
+        { title: 'Loan Receipt 1000 Rs', link: 'LoanReceipt4.html', icon: 'fa-receipt' },
+        { title: 'Saving Receipt 339 Rs', link: 'SavingReceipt.html', icon: 'fa-piggy-bank' },
+        { title: 'Saving Receipt 388 Rs', link: 'SavingReceipt1.html', icon: 'fa-piggy-bank' },
+        { title: 'Loan Receipt 3999 Rs', link: 'LoanReceipt5.html', icon: 'fa-receipt' },
+        { title: 'Saving Receipt 422 Rs', link: 'SavingReceipt2.html', icon: 'fa-piggy-bank' },
         { title: 'Your Application', link: 'Application.html', icon: 'fa-file-signature' }
     ];
 
