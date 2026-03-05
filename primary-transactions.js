@@ -3,7 +3,7 @@
 const primaryTransactions = [
     { amount: 205, type: 'credit', date: '1 March', description: 'Khandesh mahotsav'},
     { amount: 20, type: 'credit', date: '1 March', description: 'Softy'},
-    { amount: 15, type: 'credit', date: '1 March', description: 'Shev Murmura'},
+    { amount: 15, type: 'credit', date: '1 March', description: 'Shev Murmura'},  
     { amount: 500, type: 'debit', date: '1 March', description: 'Loan'},
     { amount: 100, type: 'credit', date: '21 February', description: 'Garva Biryani'},
     { amount: 125, type: 'credit', date: '21 February', description: 'Misal Pav'},
