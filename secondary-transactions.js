@@ -4,7 +4,12 @@ const secondaryTransactions = [
     // Currently no transactions for secondary account
     // Add transactions here when they become available
     // Example format:
-
+        {
+        amount: 100,
+        type: 'credit',
+        date: '28 April',
+        description: 'fund Transfer'
+    }
 ];
 
 // Make transactions available globally
