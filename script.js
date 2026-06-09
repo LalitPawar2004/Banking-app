@@ -130,9 +130,10 @@ function initializeReceiptsSection() {
         { title: 'Loan Receipt 600 Rs', link: 'LoanReceipt2.html', icon: 'fa-receipt' },
         { title: 'Loan Receipt 1100 Rs', link: 'LoanReceipt3.html', icon: 'fa-receipt' },
         { title: 'Loan Receipt 1000 Rs', link: 'LoanReceipt4.html', icon: 'fa-receipt' },
+        { title: 'Loan Receipt 3999 Rs', link: 'LoanReceipt5.html', icon: 'fa-receipt' },
+        { title: 'Loan Receipt 4000 Rs', link: 'LoanReceipt6.html', icon: 'fa-receipt' },
         { title: 'Saving Receipt 339 Rs', link: 'SavingReceipt.html', icon: 'fa-piggy-bank' },
         { title: 'Saving Receipt 388 Rs', link: 'SavingReceipt1.html', icon: 'fa-piggy-bank' },
-        { title: 'Loan Receipt 3999 Rs', link: 'LoanReceipt5.html', icon: 'fa-receipt' },
         { title: 'Saving Receipt 422 Rs', link: 'SavingReceipt2.html', icon: 'fa-piggy-bank' },
         { title: 'Your Application', link: 'Application.html', icon: 'fa-file-signature' }
     ];
