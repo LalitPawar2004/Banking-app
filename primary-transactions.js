@@ -1,6 +1,9 @@
 // primary-transactions.js - Primary account transaction data
 
 const primaryTransactions = [
+    { amount: 484, type: 'debit', date: '1 July', description: 'Loan'},
+    { amount: 250, type: 'credit', date: '29 June', description: 'Fund Transfer'},
+    { amount: 100, type: 'credit', date: '28 June', description: 'PVR Deool Band 2'},
     { amount: 4000, type: 'debit', date: '9 June', description: 'ATM Withdrawal'},
     { amount: 4000, type: 'credit', date: '9 June', description: 'Loan Amount'},
     { amount: 522, type: 'debit', date: '9 June', description: 'Loan'},
